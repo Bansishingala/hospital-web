@@ -1,48 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Lform(props) {
+    const [user, setUser] = useState('login');
     return (
-        <div>
-            <div className="container">
-                <div className="row">
-                    <form className='Form'>
-                        <h2 className='mb-3 mt-5'>Log in </h2>
-                        <div className="mb-3">
-                            <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                            <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                            <input type="password" className="form-control" id="exampleInputPassword1" />
-                        </div>
-                        <div className="mb-3 form-check">
-                            <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                            <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-                        </div>
-                        <button type="submit" className="btn btn-dark mb-5">Login</button>
-                   </form>
-                   <form>
-                    <h2 className='mt-5 mb-3'>Sign in</h2>
-                    <div className="mb-3">
-                        <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                        <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+        <center>
+            <section>
+                <div className="container">
+                    <div className="section-title">
+                        {
+                            user === "login" ?
+                                <h2>login</h2> :
+                                <h2>Signup</h2>
+                        }
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                        <input type="password" className="form-control" id="exampleInputPassword1" />
+                    <div action method="post" role="form" className="php-email-form">
+                        {
+                            user === "login" ?
+                                null
+                                :
+                                <div className="col-md-4 form-group">
+                                    <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                    <div className="validate" />
+                                </div>
+                        }
+                        <div className="col-md-4 form-group mt-3 mt-md-0">
+                            <input type="email" className="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                            <div className="validate" />
+                        </div>
+                        <div className="col-md-4 form-group mt-3 mt-md-0">
+                            <input type="password" className="form-control" name="password" id="password" placeholder="Your password" data-rule="password" data-msg="Please enter a password" />
+                            <div className="validate" />
+                        </div>
+                        {
+                            user === "login" ?
+                                <div class="text-center"><button type="submit">Login</button></div>
+                            :
+                                <div class="text-center"><button type="submit">Signup</button></div>
+                        }
+                        {
+                            user === "login" ?
+                                <div className="text-center">
+                                    <span>Creat a new Account ? <button onClick={() => setUser("signup")}>Signup</button></span>
+                                </div>
+                                :
+                                <div className="text-center">
+                                    <span>Creat a new Account ? <button  onClick={() => setUser("login")}>Login</button></span>
+                                </div>
+                        }
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="exampleInputPassword1" className="form-label">Conform Password</label>
-                        <input type="password" className="form-control" id="exampleInputPassword1" />
-                    </div>
-                    <button type="submit" className="btn btn-dark mb-5">Signup</button>
-                    </form>
                 </div>
-            </div>
+            </section>
+        </center>
 
-        </div>
     );
 }
 
