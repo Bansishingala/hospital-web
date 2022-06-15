@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 
 function Lform(props) {
     const [user, setUser] = useState('login');
+    const [reset, setReset] = useState(false)
     return (
         <center>
             <section>
                 <div className="container">
                     <div className="section-title">
-                        {
+                        {reset === "true" ?
+                            <h2>Forgot password</h2> :
                             user === "login" ?
                                 <h2>login</h2> :
                                 <h2>Signup</h2>
@@ -15,6 +17,8 @@ function Lform(props) {
                     </div>
                     <div action method="post" role="form" className="php-email-form">
                         {
+                            reset === "true" ?
+                                 null :
                             user === "login" ?
                                 null
                                 :
@@ -27,26 +31,37 @@ function Lform(props) {
                             <input type="email" className="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
                             <div className="validate" />
                         </div>
-                        <div className="col-md-4 form-group mt-3 mt-md-0">
-                            <input type="password" className="form-control" name="password" id="password" placeholder="Your password" data-rule="password" data-msg="Please enter a password" />
-                            <div className="validate" />
-                        </div>
                         {
-                            user === "login" ?
-                                <div class="text-center"><button type="submit">Login</button></div>
-                            :
-                                <div class="text-center"><button type="submit">Signup</button></div>
+                            reset === "true"?
+                                null :
+                                <div className="col-md-4 form-group mt-3 mt-md-0">
+                                    <input type="password" className="form-control" name="password" id="password" placeholder="Your password" data-rule="password" data-msg="Please enter a password" />
+                                    <div className="validate" />
+                                </div>
+                        }
+
+                        {
+                            reset === "true"?
+                                <div class="text-center"><button className='s-btn' type="submit">Submit</button></div>
+                                :
+                                user === "login" ?
+                                    <div class="text-center"><button className='s-btn' type="submit">Login</button></div>
+                                    :
+                                    <div class="text-center"><button className='s-btn' type="submit">Signup</button></div>
                         }
                         {
+
                             user === "login" ?
                                 <div className="text-center">
-                                    <span>Creat a new Account ? <button onClick={() => setUser("signup")}>Signup</button></span>
+                                    <span>Creat a new Account ? <button className='s-btn'onClick={() => {setReset('false') ; setUser("signup")}}>Signup</button></span>
                                 </div>
                                 :
                                 <div className="text-center">
-                                    <span>Creat a new Account ? <button  onClick={() => setUser("login")}>Login</button></span>
+                                    <span>Already a account </span><button className='s-btn' onClick={() => {setReset('false') ;setUser("login")}}>Login</button>
                                 </div>
                         }
+                         <div className="text-center"><button type="submit"  className='s-btn' onClick={() => setReset('true')}>Forgot password</button></div>
+                       
                     </div>
                 </div>
             </section>

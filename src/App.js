@@ -10,6 +10,7 @@ import About from './Container/About/About';
 import Contact from './Container/Contact/Contact';
 import Appointment from './Container/Appointment/Appointment';
 import Lform from './Container/Login-Signin/Lform';
+import Medicines from './Container/Medicins/Medicines';
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
       <Route path={"/Contact"} exact component={Contact} />
       <Route path={"/Appointment"} exact component={Appointment} />
       <Route path={"/Lform"} exact component={Lform} />
+      <Route path={"/Medicines"} exact component={Medicines} />
+      
       {/* < Home /> */}
       </Switch>
       <Footer />
