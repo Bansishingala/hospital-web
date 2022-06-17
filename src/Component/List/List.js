@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card ,CardBody ,CardSubtitle  ,CardText , CardTitle} from "reactstrap";
+import {  Card ,CardBody ,CardSubtitle  ,CardText , CardTitle ,Button} from "reactstrap";
 
-function List({Data}) {
+function List({Data,getId}) {
     return (
         <div>{
             Data.map((o , i )=> {
@@ -24,6 +24,7 @@ function List({Data}) {
                     </CardText>
                     {o.quantity}
                 </CardBody>
+                <Button onClick={() => getId(o.id)}>Medicines</Button>
             </Card>
                 )
           })

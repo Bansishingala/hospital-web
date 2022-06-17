@@ -38,9 +38,14 @@ function Medicines(props) {
         price: 250,
         expiry: 2021
 },
-        ]
+        ];
+        const get = (id) =>{
+            console.log(id);
+        }
+ 
     return (
         <List
+        getId ={get}
         Data = {orgData}
         />
     );

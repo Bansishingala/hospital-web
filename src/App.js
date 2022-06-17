@@ -11,6 +11,7 @@ import Contact from './Container/Contact/Contact';
 import Appointment from './Container/Appointment/Appointment';
 import Lform from './Container/Login-Signin/Lform';
 import Medicines from './Container/Medicins/Medicines';
+import Ref from './Container/User_Ref/Ref';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Route path={"/Appointment"} exact component={Appointment} />
       <Route path={"/Lform"} exact component={Lform} />
       <Route path={"/Medicines"} exact component={Medicines} />
+      <Route path={"/Ref"} exact component={Ref} />
       
       {/* < Home /> */}
       </Switch>
