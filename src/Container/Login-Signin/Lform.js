@@ -24,9 +24,22 @@ function Lform(props) {
             password: yup.string().required("Please enter Password"),
         }
         intialval = {
-            name :'',
+            name: '',
             email: '',
             password: ''
+        }
+    }
+
+    const handleData = (values) => {
+        let localData = JSON.parse(localStorage.getItem("user"));
+
+
+        if (localData === null) {
+            localStorage.setItem("user", JSON.stringify([values]));
+        } else {
+            localData.push(values);
+            localStorage.setItem("user", JSON.stringify("localData"));
+
         }
     }
 
@@ -35,10 +48,10 @@ function Lform(props) {
         initialValues: intialval,
         validationSchema: schema,
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+            handleData(values)
         },
     });
-    const { handleChange, errors, handleSubmit , touched ,handleBlur } = formik;
+    const { handleChange, errors, handleSubmit, touched, handleBlur } = formik;
 
     return (
         <center>
@@ -72,7 +85,7 @@ function Lform(props) {
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                             />
-                                           <p className='text-danger'>{errors.name && touched.name ? errors.name :''}</p>
+                                            <p className='text-danger'>{errors.name && touched.name ? errors.name : ''}</p>
                                         </div>
                             }
                             <div className="col-md-4 form-group mt-3 mt-md-0">
@@ -104,7 +117,7 @@ function Lform(props) {
                                             onChange={handleChange}
                                             onBlur={handleBlur}
                                         />
-                                        <p className='text-danger'>{errors.password && touched.password?errors.password : ''}</p>
+                                        <p className='text-danger'>{errors.password && touched.password ? errors.password : ''}</p>
                                     </div>
                             }
 
