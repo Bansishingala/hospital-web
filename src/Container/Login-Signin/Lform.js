@@ -35,9 +35,9 @@ function Lform(props) {
 
 
         if (localData === null) {
-            localStorage.setItem("user", JSON.stringify([values]));
+            localStorage.setItem("user", JSON.stringify([values]))
         } else {
-            localData.push(values);
+            localData.push(values)
             localStorage.setItem("user", JSON.stringify("localData"));
 
         }
