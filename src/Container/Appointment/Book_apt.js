@@ -2,7 +2,7 @@ import { Formik, useFormik, Form } from 'formik';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import * as yup from 'yup';
-
+import { useHistory } from "react-router-dom"
 
 function List_apt(props) {
     let schema = yup.object().shape({
@@ -28,6 +28,8 @@ function List_apt(props) {
         console.log([data]);
 
     }
+    const history = useHistory()
+    
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -38,8 +40,8 @@ function List_apt(props) {
         },
         validationSchema: schema,
         onSubmit: values => {
-           
-          handleInsert(values)
+            handleInsert(values)
+            history.push("/List-apt")
         },
         enableReinitialize: true,
     });
