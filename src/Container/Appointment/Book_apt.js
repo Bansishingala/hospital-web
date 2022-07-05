@@ -1,10 +1,10 @@
-import { Formik , useFormik , Form } from 'formik';
+import { Formik, useFormik, Form } from 'formik';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import * as yup from 'yup';
 
 
-function Appointment(props) {
-
+function List_apt(props) {
     let schema = yup.object().shape({
         name: yup.string().required("Please Enter Your Name"),
         email: yup.string().email("Please Enter Valid Email").required("Please Enter Your Email"),
@@ -12,23 +12,39 @@ function Appointment(props) {
         date: yup.string().required("Please Enter Your Appoment Date"),
         department: yup.string().required("Please Select Any Department")
     });
+    const handleInsert = (values) => {
+        let Ldata = JSON.parse(localStorage.getItem("B-apt"))
+        let id =Math.floor(Math.random()*1000)
+        let data = {
+            id,
+            ...values
+        }
+        if(Ldata === null){
+            localStorage.setItem("B-apt" , JSON.stringify([data]))
+        }else{
+            Ldata.push(data)
+            localStorage.setItem("B-apt" , JSON.stringify(Ldata))
+        }
+        console.log([data]);
 
+    }
     const formik = useFormik({
         initialValues: {
             name: '',
             email: '',
-            phone:'',
-            date:'',
-            department:''
+            phone: '',
+            date: '',
+            department: ''
         },
-        validationSchema : schema,
+        validationSchema: schema,
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+           
+          handleInsert(values)
         },
-        enableReinitialize:true,
+        enableReinitialize: true,
     });
 
-    const {  handleSubmit , handleBlur , handleChange , touched , errors } = formik
+    const { handleSubmit, handleBlur, handleChange, touched, errors } = formik
 
     return (
         <div>
@@ -36,13 +52,18 @@ function Appointment(props) {
                 <section id="appointment" className="appointment">
                     <div className="container">
                         <div className="section-title">
-                            <h2>Make an Appointment</h2>
-                            <p>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
-                                blandit quam volutpat sollicitudin. Fusce tincidunt sit amet ex in volutpat. Donec lacinia finibus tortor.
-                                Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.</p>
+                            <h2>Book an Appointment</h2>
+                        </div>
+                        <div className='row'>
+                            <div className='col-6'>
+                                <NavLink exact to={"/Book-apt"} >Book An Appointment</NavLink>
+                            </div>
+                            <div className='col-6'>
+                                <NavLink exact to={'/List_apt'} >list An Appointment</NavLink>
+                            </div>
                         </div>
                         <Formik values={formik}>
-                            <Form action method="post" onSubmit={handleSubmit} role="form" className="php-email-form">
+                            <Form onSubmit={handleSubmit} className="php-email-form">
                                 <div className="row">
                                     <div className="col-md-4 form-group">
                                         <input type="text"
@@ -64,11 +85,11 @@ function Appointment(props) {
                                             id="email"
                                             placeholder="Your Email"
                                             data-rule="email"
-                                            data-msg="Please enter a valid email" 
+                                            data-msg="Please enter a valid email"
                                             onChange={handleChange}
                                             onBlur={handleBlur}
-                                            />
-                                        <p className='text-danger'>{errors.email && touched.email ? errors.email :''}</p>
+                                        />
+                                        <p className='text-danger'>{errors.email && touched.email ? errors.email : ''}</p>
                                     </div>
                                     <div className="col-md-4 form-group mt-3 mt-md-0">
                                         <input type="tel"
@@ -103,14 +124,14 @@ function Appointment(props) {
                                             <option value="Department 1">Department 1</option>
                                             <option value="Department 2">Department 2</option>
                                             <option value="Department 3">Department 3</option>
-                                            
+
                                         </select>
                                         <p className='text-danger'>{errors.department && touched.department ? errors.department : ''}</p>
                                     </div>
                                 </div>
                                 <div className="form-group mt-3">
                                     <textarea className="form-control" name="message" rows={5} placeholder="Message (Optional)" onChange={handleChange}
-                                            onBlur={handleBlur} defaultValue={""} />
+                                        onBlur={handleBlur} defaultValue={""} />
                                     <div className="validate" />
                                 </div>
                                 <div className="mb-3">
@@ -129,4 +150,4 @@ function Appointment(props) {
     );
 }
 
-export default Appointment;
+export default List_apt;

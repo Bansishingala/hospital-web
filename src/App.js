@@ -8,10 +8,12 @@ import Department from './Container/Department/Department';
 import Doctors from './Container/Doctors/Doctors';
 import About from './Container/About/About';
 import Contact from './Container/Contact/Contact';
-import Appointment from './Container/Appointment/Appointment';
+import Appointment from './Container/Appointment/Book_apt';
 import Lform from './Container/Login-Signin/Lform';
 import Medicines from './Container/Medicins/Medicines';
 import Ref from './Container/User_Ref/Ref';
+import List_apt from './Container/Appointment/List_apt';
+import Book_apt from './Container/Appointment/Book_apt';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
       <Route path={"/Lform"} exact component={Lform} />
       <Route path={"/Medicines"} exact component={Medicines} />
       <Route path={"/Ref"} exact component={Ref} />
+      <Route path={"/Book-apt"} exact component={Book_apt} />
+      <Route path={"/List-apt"} exact component={List_apt} />
       
       {/* < Home /> */}
       </Switch>
