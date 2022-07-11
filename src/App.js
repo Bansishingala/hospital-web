@@ -14,23 +14,25 @@ import Medicines from './Container/Medicins/Medicines';
 import Ref from './Container/User_Ref/Ref';
 import List_apt from './Container/Appointment/List_apt';
 import Book_apt from './Container/Appointment/Book_apt';
+import PublicRoute from './Route/PublicRoute';
+import PrivetRoute from './Route/PrivetRoute';
 
 function App() {
   return (
     <div>
       < Header />
       <Switch>
-      <Route path={"/"} exact component={Home} />
-      <Route path={"/Department"} exact component={Department} />
-      <Route path={"/Doctors"} exact component={Doctors} />
-      <Route path={"/About"} exact component={About} />
-      <Route path={"/Contact"} exact component={Contact} />
-      <Route path={"/Appointment"} exact component={Appointment} />
-      <Route path={"/Lform"} exact component={Lform} />
-      <Route path={"/Medicines"} exact component={Medicines} />
-      <Route path={"/Ref"} exact component={Ref} />
-      <Route path={"/Book-apt"} exact component={Book_apt} />
-      <Route path={"/List-apt"} exact component={List_apt} />
+      <PublicRoute path={"/"} exact component={Home} />
+      <PublicRoute path={"/Department"} exact component={Department} />
+      <PublicRoute path={"/Doctors"} exact component={Doctors} />
+      <PublicRoute path={"/About"} exact component={About} />
+      <PublicRoute path={"/Contact"} exact component={Contact} />
+      <PrivetRoute path={"/Appointment"} exact component={Appointment} />
+      <PublicRoute path={"/Lform"} exact resticted={true} component={Lform} />
+      <PublicRoute path={"/Medicines"} exact component={Medicines} />
+      <PrivetRoute path={"/Ref"} exact component={Ref} />
+      <PrivetRoute path={"/Book-apt"} exact component={Book_apt} />
+      <PrivetRoute path={"/List-apt"} exact component={List_apt} />
       
       {/* < Home /> */}
       </Switch>

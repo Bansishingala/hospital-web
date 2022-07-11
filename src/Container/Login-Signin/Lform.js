@@ -7,6 +7,7 @@ function Lform(props) {
     const [user, setUser] = useState('login');
     const [reset, setReset] = useState(false)
 
+    
     let schemaobj, intialval;
     if (user === "login") {
         schemaobj = {
@@ -29,7 +30,9 @@ function Lform(props) {
             password: ''
         }
     }
-
+    const  handleLogin = () => {
+        localStorage.setItem("user" , "1234567890")
+    }
     const handleData = (values) => {
         let localData = JSON.parse(localStorage.getItem("user"));
 
@@ -48,7 +51,11 @@ function Lform(props) {
         initialValues: intialval,
         validationSchema: schema,
         onSubmit: values => {
-            handleData(values)
+            if (user === 'login') {
+                handleLogin()
+            } else {
+                handleData(values)
+            }
         },
     });
     const { handleChange, errors, handleSubmit, touched, handleBlur } = formik;
