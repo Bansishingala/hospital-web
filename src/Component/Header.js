@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import ThemeContext from '../Context/ThemeContext';
 
 function Header(props) {
+    const value = useContext(ThemeContext);
     return (
         <div>
             <div className="main-header">
-                <div id="topbar" className="d-flex align-items-center fixed-top">
-                    <div className="container d-flex justify-content-between">
+                <div id="topbar" className={`d-flex align-items-center fixed-top ${value.theme}`}>
+                        <div className="container d-flex justify-content-between">
                         <div className="contact-info d-flex align-items-center">
                             <i className="bi bi-envelope" /> <a href="mailto:contact@example.com">cityhospital@example.com</a>
-                            <i className="bi bi-phone" /> +91 9988776655
+                            <i className="bi bi-phone" /> +91 998877665
                         </div>
                         <div className="d-none d-lg-flex social-links align-items-center">
                             <a href="#" className="twitter"><i className="bi bi-twitter" /></a>
@@ -17,6 +19,9 @@ function Header(props) {
                             <a href="#" className="instagram"><i className="bi bi-instagram" /></a>
                             <a href="#" className="linkedin"><i className="bi bi-linkedin" /></a>
                         </div>
+                        <button onClick={() => value.Toggle_theme(value.theme)}>
+                            Change Theme
+                        </button>
                     </div>
                 </div>
                 <header id="header" className="fixed-top">
@@ -32,14 +37,14 @@ function Header(props) {
                                 <li>
                                     <NavLink className="nav-link scrollto active" to='/'>Home</NavLink>
                                 </li>
-                               <li>
-                                    <NavLink  className="nav-link scrollto" to="/Department">Departments</NavLink>
+                                <li>
+                                    <NavLink className="nav-link scrollto" to="/Department">Departments</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink  className="nav-link scrollto" to="/Doctors">Doctors</NavLink>
+                                    <NavLink className="nav-link scrollto" to="/Doctors">Doctors</NavLink>
                                 </li>
                                 <li>
-                                <NavLink className="nav-link scrollto" to="/About">About</NavLink>
+                                    <NavLink className="nav-link scrollto" to="/About">About</NavLink>
                                 </li>
                                 <li>
                                     <NavLink className="nav-link scrollto" to="/Medicines">Medicines</NavLink>
@@ -51,11 +56,11 @@ function Header(props) {
                             <i className="bi bi-list mobile-nav-toggle" />
                         </nav>
 
-                        <NavLink exact to ="/Book-apt" className="appointment-btn scrollto"><span className="d-none d-md-inline">Make an Appointment</span></NavLink>
-                            <NavLink className="appointment-btn scrollto" to="/Lform">
-                                 <span>Login/ Signup</span>
-                            </NavLink>
-                        
+                        <NavLink exact to="/Book-apt" className="appointment-btn scrollto"><span className="d-none d-md-inline">Make an Appointment</span></NavLink>
+                        <NavLink className="appointment-btn scrollto" to="/Lform">
+                            <span>Login/ Signup</span>
+                        </NavLink>
+
                     </div>
                 </header>
             </div>

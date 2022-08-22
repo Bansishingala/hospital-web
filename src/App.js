@@ -16,27 +16,30 @@ import List_apt from './Container/Appointment/List_apt';
 import Book_apt from './Container/Appointment/Book_apt';
 import PublicRoute from './Route/PublicRoute';
 import PrivetRoute from './Route/PrivetRoute';
+import ToggleThemeContext from './Context/ThemeContext';
 
 function App() {
   return (
     <div>
-      < Header />
-      <Switch>
-      <PublicRoute path={"/"} exact component={Home} />
-      <PublicRoute path={"/Department"} exact component={Department} />
-      <PublicRoute path={"/Doctors"} exact component={Doctors} />
-      <PublicRoute path={"/About"} exact component={About} />
-      <PublicRoute path={"/Contact"} exact component={Contact} />
-      <PrivetRoute path={"/Appointment"} exact component={Appointment} />
-      <PublicRoute path={"/Lform"} exact resticted={true} component={Lform} />
-      <PublicRoute path={"/Medicines"} exact component={Medicines} />
-      <PrivetRoute path={"/Ref"} exact component={Ref} />
-      <PrivetRoute path={"/Book-apt"} exact component={Book_apt} />
-      <PrivetRoute path={"/List-apt"} exact component={List_apt} />
-      
-      {/* < Home /> */}
-      </Switch>
-      <Footer />
+      <ToggleThemeContext>
+        < Header />
+        <Switch>
+          <PublicRoute path={"/"} exact component={Home} />
+          <PublicRoute path={"/Department"} exact component={Department} />
+          <PublicRoute path={"/Doctors"} exact component={Doctors} />
+          <PublicRoute path={"/About"} exact component={About} />
+          <PublicRoute path={"/Contact"} exact component={Contact} />
+          <PrivetRoute path={"/Appointment"} exact component={Appointment} />
+          <PublicRoute path={"/Lform"} exact resticted={true} component={Lform} />
+          <PublicRoute path={"/Medicines"} exact component={Medicines} />
+          <PrivetRoute path={"/Ref"} exact component={Ref} />
+          <PrivetRoute path={"/Book-apt"} exact component={Book_apt} />
+          <PrivetRoute path={"/List-apt"} exact component={List_apt} />
+
+          {/* < Home /> */}
+        </Switch>
+        <Footer />
+      </ToggleThemeContext>
     </div>
   )
 }
