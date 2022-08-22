@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import * as yup from 'yup';
 import { Form, useFormik, Formik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { signUpAction } from '../../redux/Action/Auth_action';
 
 
 function Lform(props) {
     const [user, setUser] = useState('login');
     const [reset, setReset] = useState(false)
 
-    
+
     let schemaobj, intialval;
     if (user === "login") {
         schemaobj = {
@@ -30,20 +32,24 @@ function Lform(props) {
             password: ''
         }
     }
-    const  handleLogin = () => {
-        localStorage.setItem("user" , "1234567890")
+
+    const dispatch = useDispatch();
+    
+    const handleLogin = () => {
+        localStorage.setItem("user", "1234567890")
     }
     const handleData = (values) => {
-        let localData = JSON.parse(localStorage.getItem("user"));
+        // let localData = JSON.parse(localStorage.getItem("user"));
 
 
-        if (localData === null) {
-            localStorage.setItem("user", JSON.stringify([values]))
-        } else {
-            localData.push(values)
-            localStorage.setItem("user", JSON.stringify("localData"));
+        // if (localData === null) {
+        //     localStorage.setItem("user", JSON.stringify([values]))
+        // } else {
+        //     localData.push(values)
+        //     localStorage.setItem("user", JSON.stringify("localData"));
 
-        }
+        // }
+        dispatch(signUpAction(values));
     }
 
     let schema = yup.object().shape(schemaobj);
