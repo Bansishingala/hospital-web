@@ -19,7 +19,7 @@ function Header(props) {
                             <a href="#" className="instagram"><i className="bi bi-instagram" /></a>
                             <a href="#" className="linkedin"><i className="bi bi-linkedin" /></a>
                         </div>
-                        <button onClick={() => value.Toggle_theme(value.theme)}>
+                        <button onClick={() => value.toggle_theme(value.theme)}>
                             Change Theme
                         </button>
                     </div>

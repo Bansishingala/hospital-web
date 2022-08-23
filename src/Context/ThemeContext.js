@@ -3,13 +3,13 @@ import { TOGGLE_THEME } from "./ActionTypes";
 import { ThemeReducer } from "./Reducers/ThemeReducer";
 
 
-export const themeContext = createContext();
+export const ThemeContext = createContext();
 
 const initval = {
     theme: 'light'
 }
 
-const ThemeContext = ({ children }) => {
+export const ThemeProvider = ({ children }) => {
     const [state, dispatch] = useReducer(ThemeReducer, initval);
 
     const toggle_theme = (val) => {
@@ -18,7 +18,7 @@ const ThemeContext = ({ children }) => {
     }
 
     return (
-        <themeContext.Provider
+        <ThemeContext.Provider
             value={{
                 ...state,
                 toggle_theme
@@ -27,7 +27,7 @@ const ThemeContext = ({ children }) => {
         >
             {children}
 
-        </themeContext.Provider>
+        </ThemeContext.Provider>
     )
 }
 
