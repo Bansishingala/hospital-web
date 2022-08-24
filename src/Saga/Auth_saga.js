@@ -5,9 +5,9 @@ import * as ActionType from '../ActionType';
 function* SignUp(action) {
   try {
     const user = yield call(SignUpApi, action.payload);
-    //   yield put({type: "USER_FETCH_SUCCEEDED", user: user});
+    console.log(user);
   } catch (e) {
-    //   yield put({type: "USER_FETCH_FAILED", message: e.message});
+
   }
 }
 

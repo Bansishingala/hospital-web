@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { authReducer } from "./Login_Reducer";
+import { authReducer } from "./SignUp_Reducer";
 
  
 
