@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as yup from 'yup';
 import { Form, useFormik, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { signUpAction } from '../../redux/Action/Auth_action';
+import { SignInAction, signUpAction } from '../../redux/Action/Auth_action';
 
 
 function Lform(props) {
@@ -20,7 +20,7 @@ function Lform(props) {
             email: '',
             password: ''
         }
-    } else if (user === "signup") {
+     } else if (user === "signup") {
         schemaobj = {
             name: yup.string().required("please enter your name"),
             email: yup.string().email("please enter valid Email Id").required("please enter Email Id"),
@@ -34,9 +34,10 @@ function Lform(props) {
     }
 
     const dispatch = useDispatch();
-    
-    const handleLogin = () => {
-        localStorage.setItem("user", "1234567890")
+
+    const handleLogin = (values) => {
+       // localStorage.setItem("user", "1234567890")
+       dispatch(SignInAction(values));
     }
     const handleData = (values) => {
         // let localData = JSON.parse(localStorage.getItem("user"));
@@ -65,7 +66,7 @@ function Lform(props) {
         },
     });
     const { handleChange, errors, handleSubmit, touched, handleBlur } = formik;
- 
+
     return (
         <center>
             <section>
