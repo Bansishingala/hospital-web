@@ -36,6 +36,7 @@ function Lform(props) {
     const dispatch = useDispatch();
 
     const handleLogin = (values) => {
+        console.log(values);
        // localStorage.setItem("user", "1234567890")
        dispatch(SignInAction(values));
     }
@@ -59,7 +60,7 @@ function Lform(props) {
         validationSchema: schema,
         onSubmit: values => {
             if (user === 'login') {
-                handleLogin()
+                handleLogin(values)
             } else {
                 handleData(values)
             }

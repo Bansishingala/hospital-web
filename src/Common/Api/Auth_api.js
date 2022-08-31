@@ -55,7 +55,7 @@ export const SignInApi = (data) => {
                 // ...
 
                 if (user.emailVerified) {
-                    reject({ payload: "Login Is Succesfully" });
+                    resolve({ payload: "Login Is Succesfully" });
                 } else {
                     reject({ payload: "First Is Email Varify." });
                 }
